@@ -1,0 +1,279 @@
+// Full Java practical programs collected in one document.
+// Save each "File: <Name>.java" section into its own .java file and compile/run with javac/java.
+
+// File: BasicSwapAndFactorial.java
+import java.util.Scanner;
+public class BasicSwapAndFactorial {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter a and b: ");
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        System.out.println("Before swap: a=" + a + " b=" + b);
+        // swap without third variable
+        a = a + b;
+        b = a - b;
+        a = a - b;
+        System.out.println("After swap: a=" + a + " b=" + b);
+
+        System.out.print("Enter n for factorial: ");
+        int n = sc.nextInt();
+        long fact = 1;
+        for (int i = 2; i <= n; i++) fact *= i;
+        System.out.println(n + "! = " + fact);
+        sc.close();
+    }
+}
+
+
+// File: PalindromeCheck.java
+import java.util.Scanner;
+public class PalindromeCheck {
+    public static void main(String[] args) {
+        String s;
+        if (args.length > 0) s = args[0];
+        else {
+            Scanner sc = new Scanner(System.in);
+            System.out.print("Enter a string/number: ");
+            s = sc.nextLine();
+            sc.close();
+        }
+        String rev = new StringBuilder(s).reverse().toString();
+        System.out.println(s + (s.equals(rev) ? " is a palindrome" : " is not a palindrome"));
+    }
+}
+
+
+// File: ArrayPrimes.java
+import java.util.Scanner;
+public class ArrayPrimes {
+    static boolean isPrime(int x) {
+        if (x < 2) return false;
+        for (int i = 2; i * i <= x; i++) if (x % i == 0) return false;
+        return true;
+    }
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("How many numbers? ");
+        int n = sc.nextInt();
+        int[] a = new int[n];
+        System.out.println("Enter numbers:");
+        for (int i = 0; i < n; i++) a[i] = sc.nextInt();
+        System.out.print("Primes: ");
+        for (int v : a) if (isPrime(v)) System.out.print(v + " ");
+        System.out.println();
+        sc.close();
+    }
+}
+
+
+// File: SimpleStack.java
+public class SimpleStack {
+    private int[] stack = new int[10];
+    private int top = -1;
+    public void push(int v) {
+        if (top >= 9) { System.out.println("Stack overflow"); return; }
+        stack[++top] = v;
+    }
+    public Integer pop() {
+        if (top < 0) { System.out.println("Stack underflow"); return null; }
+        return stack[top--];
+    }
+    public static void main(String[] args) {
+        SimpleStack s = new SimpleStack();
+        s.push(5); s.push(10);
+        System.out.println("Popped: " + s.pop());
+        System.out.println("Popped: " + s.pop());
+        System.out.println("Popped: " + s.pop()); // underflow
+    }
+}
+
+
+// File: Publisher.java
+class Publisher {
+    String publisherName;
+    public void setPublisher(String name) { publisherName = name; }
+}
+
+// File: BookDemo.java
+public class BookDemo extends Publisher {
+    String bookName;
+    int bookId;
+    String authorName;
+
+    public void getdata(String bname, int id, String author, String pub) {
+        this.bookName = bname; this.bookId = id; this.authorName = author; setPublisher(pub);
+    }
+    public void showdata() {
+        System.out.println("Book: " + bookName + ", ID: " + bookId + ", Author: " + authorName + ", Publisher: " + publisherName);
+    }
+
+    public static void main(String[] args) {
+        BookDemo b = new BookDemo();
+        b.getdata("Java101", 1, "Alice", "TechPub");
+        b.showdata();
+    }
+}
+
+
+// File: MethodOverloading.java
+public class MethodOverloading {
+    int addFunc(int a, int b) { return a + b; }
+    double addFunc(double a, double b) { return a + b; }
+
+    public static void main(String[] args) {
+        MethodOverloading m = new MethodOverloading();
+        System.out.println("int add: " + m.addFunc(3,4));
+        System.out.println("double add: " + m.addFunc(3.5, 4.2));
+    }
+}
+
+
+// File: SuperExample.java
+class Base {
+    int x = 10;
+    void show() { System.out.println("Base x = " + x); }
+}
+class Sub extends Base {
+    int x = 20;
+    void show() {
+        System.out.println("Sub x = " + x);
+        System.out.println("Base x via super = " + super.x);
+        super.show();
+    }
+    public static void main(String[] args) {
+        new Sub().show();
+    }
+}
+
+
+// File: FinalDemo.java
+final class FinalCircle {
+    double r;
+    FinalCircle(double r){ this.r = r; }
+    double area(){ return Math.PI * r * r; }
+}
+public class FinalDemo {
+    public static void main(String[] args) {
+        FinalCircle c = new FinalCircle(3);
+        System.out.println("Area (final class) = " + c.area());
+    }
+}
+
+
+// File: AbstractDemo.java
+abstract class AbstractShape {
+    abstract double area();
+}
+class Rectangle extends AbstractShape {
+    double w,h;
+    Rectangle(double w,double h){this.w=w;this.h=h;}
+    double area(){ return w*h; }
+}
+public class AbstractDemo {
+    public static void main(String[] args) {
+        AbstractShape r = new Rectangle(4,5);
+        System.out.println("Rectangle area = " + r.area());
+    }
+}
+
+
+// File: InterfaceDemo.java
+interface ShapeI { double area(); }
+class Circle implements ShapeI {
+    double r;
+    Circle(double r){this.r=r;}
+    public double area(){ return Math.PI*r*r; }
+}
+public class InterfaceDemo {
+    public static void main(String[] args) {
+        ShapeI s = new Circle(2.5);
+        System.out.println("Circle area (interface) = " + s.area());
+    }
+}
+
+
+// File: DivisionException.java
+public class DivisionException {
+    public static void main(String[] args) {
+        try {
+            if (args.length < 2) throw new IllegalArgumentException("Provide two integers");
+            int a = Integer.parseInt(args[0]);
+            int b = Integer.parseInt(args[1]);
+            System.out.println("Result = " + (a / b));
+        } catch (ArrayIndexOutOfBoundsException | IllegalArgumentException e) {
+            System.out.println("Usage: java DivisionException <int1> <int2>");
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid number format");
+        } catch (ArithmeticException e) {
+            System.out.println("Cannot divide by zero");
+        }
+    }
+}
+
+
+// File: FileHandling.java
+import java.io.*;
+import java.nio.file.*;
+import java.time.*;
+import java.util.Scanner;
+public class FileHandling {
+    public static void main(String[] args) throws IOException {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter file name to create (eg out.txt): ");
+        String fname = sc.nextLine();
+        System.out.print("Enter a string: ");
+        String s = sc.nextLine();
+        String up = s.toUpperCase();
+
+        // write to file
+        Files.write(Paths.get(fname), (up + System.lineSeparator()).getBytes(), StandardOpenOption.CREATE, StandardOpenOption.APPEND);
+        System.out.println("Wrote uppercase text to " + fname);
+
+        // display last modified date
+        File f = new File(fname);
+        System.out.println("File last modified: " + Instant.ofEpochMilli(f.lastModified()));
+
+        // ask to delete
+        System.out.print("Delete file? (y/n): ");
+        if (sc.nextLine().trim().equalsIgnoreCase("y")) {
+            if (f.delete()) System.out.println("Deleted " + fname);
+            else System.out.println("Delete failed");
+        }
+        sc.close();
+    }
+}
+
+
+// File: CollectionArrayList.java
+import java.util.*;
+public class CollectionArrayList {
+    public static void main(String[] args) {
+        ArrayList<Integer> list = new ArrayList<>();
+        Collections.addAll(list, 5, 12, 7, 3);
+        System.out.println("ArrayList: " + list);
+        Integer[] arr = list.toArray(new Integer[0]);
+        int sum = 0;
+        System.out.print("Array elements: ");
+        for (int v : arr) { System.out.print(v + " "); sum += v; }
+        System.out.println("\nSum = " + sum);
+    }
+}
+
+
+// File: MailListDemo.java
+import java.util.*;
+class Address {
+    String name, city, state;
+    Address(String name, String city, String state){ this.name=name; this.city=city; this.state=state; }
+    public String toString(){ return name + ", " + city + ", " + state; }
+}
+public class MailListDemo {
+    public static void main(String[] args) {
+        LinkedList<Address> list = new LinkedList<>();
+        list.add(new Address("Rupesh","Vadodara","GJ"));
+        list.add(new Address("Anita","Mumbai","MH"));
+        Iterator<Address> it = list.iterator();
+        while (it.hasNext()) System.out.println(it.next());
+    }
+}
