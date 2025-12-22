@@ -1,0 +1,73 @@
+## Step 1: Open NetBeans and Create Project
+
+1. Open **NetBeans**
+2. Click **File → New Project**
+3. Select **Java → Java Application**
+4. Click **Next**
+5. Project Name: `StudentResult`
+6. **Uncheck** “Create Main Class”
+7. Click **Finish**
+
+---
+
+## Step 2: Create a JFrame Form
+
+1. Right-click on **Source Packages**
+2. Click **New → JFrame Form**
+3. Class Name: `ResultCalculator`
+4. Package Name: `studentresult`
+5. Click **Finish**
+
+NetBeans will open the **Design (GUI) window**.
+
+---
+
+## Step 3: Design the GUI (Drag & Drop)
+
+### Add Components from Palette
+
+Add the following components:
+
+### Labels
+
+* `Student Result Calculator`
+* `Subject 1`
+* `Subject 2`
+* `Subject 3`
+* `Subject 4`
+* `Subject 5`
+* `Total Marks`
+* `Percentage`
+
+### Text Fields
+
+* `txtSub1`
+* `txtSub2`
+* `txtSub3`
+* `txtSub4`
+* `txtSub5`
+* `txtTotal`
+* `txtPercentage`
+
+(Set `txtTotal` and `txtPercentage` → **Editable = false**)
+
+### Button
+
+* `btnCalculate` → Text: **Calculate Result**
+
+---
+
+## Step 4: GUI Layout (Reference)
+
+![Image](https://media.geeksforgeeks.org/wp-content/uploads/20200702224833/t8.PNG?utm_source=chatgpt.com)
+
+![Image](https://www.tutorialspoint.com/assets/questions/media/567279-1683871002.jpg?utm_source=chatgpt.com)
+
+![Image](https://media.geeksforgeeks.org/wp-content/uploads/20200727164711/c13-660x485.png?utm_source=chatgpt.com)
+
+---
+
+## Step 5: Add Button Logic
+
+1. Double-click **Calculate Result** button
+2. NetBeans opens `btnCalculateActionPerformed()`s
